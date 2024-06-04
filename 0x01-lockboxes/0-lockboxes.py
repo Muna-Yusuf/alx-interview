@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-""" DOC """
+""" Doc function. """
+
 
 def canUnlockAll(boxes):
-    """ function that determines if all the 
+    """Function that determines if all the
         boxes in a given list can be unlocked."""
     n = len(boxes)
     unlocked = [False] * n
