@@ -1,4 +1,4 @@
-# 0x03. ES6 data manipulation.  
+# 0x01. Lockboxes 
 
 ## Description:
 
