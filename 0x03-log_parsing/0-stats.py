@@ -42,7 +42,7 @@ for line in sys.stdin:
             total_size += size
             if code in status_counts:
                 status_counts[code] += 1
-        except:
+        except ValueError:
             continue
     line_count += 1
     if line_count % 10 == 0:
