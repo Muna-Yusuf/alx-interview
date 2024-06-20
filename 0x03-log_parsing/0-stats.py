@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-"""
-Log stats module
-"""
+"""Log stats module."""
 import sys
 from operator import itemgetter
 
 
 def log_parser(log):
-    """
-    Parses log into different fields
-    """
+    """Breaks down the log into distinct fields."""
     log_fields = log.split()
     file_size = int(log_fields[-1])
     status_code = log_fields[-2]
@@ -17,25 +13,25 @@ def log_parser(log):
 
 
 def validate_format(log):
-    """
-    Validates log format
-    """
+    """Checks the log format for validity."""
     return False if len(log.split()) < 7 else True
 
 
 def validate_status_code(status_code):
-    """
-    Check if status code entry is valid
-    """
-    valid_status_codes = ["200", "301", "400", "401",
-                          "403", "404", "405", "500"]
+    """Verify the validity of the status code entry."""
+    valid_status_codes = ["200",
+                          "301",
+                          "400",
+                          "401",
+                          "403",
+                          "404",
+                          "405",
+                          "500"]
     return True if status_code in valid_status_codes else False
 
 
 def print_log(file_size, status_codes) -> None:
-    """
-    Prints out log files
-    """
+    """"Outputs log files."""
     sorted_status_codes = sorted(status_codes.items(), key=itemgetter(0))
     print('File size: {}'.format(file_size))
     for code_count in sorted_status_codes:
@@ -45,10 +41,8 @@ def print_log(file_size, status_codes) -> None:
 
 
 def main():
-    """
-    Reads logs from std in and prints out statistic
-    on status code and file size
-    """
+    """"Parses logs from stdin and generates
+        statistics on status codes and file sizes."""
     status_codes_count = {}
     total_size = 0
     log_count = 0
