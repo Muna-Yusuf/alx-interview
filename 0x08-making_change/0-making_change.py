@@ -3,7 +3,7 @@
 Coin Change Algorithm
 """
 
-def make_change(coin_values, target_amount):
+def makeChange(coin_values, target_amount):
     """
     Calculate the minimum number of coins needed to reach the target amount.
     
