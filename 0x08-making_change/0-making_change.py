@@ -3,14 +3,13 @@
 Coin Change Algorithm
 """
 
+
 def makeChange(coin_values, target_amount):
     """
     Calculate the minimum number of coins needed to reach the target amount.
-    
     Args:
         coin_values (list): Available coin denominations.
         target_amount (int): The desired total amount.
-    
     Returns:
         int: Fewest number of coins needed, or -1 if not possible.
     """
