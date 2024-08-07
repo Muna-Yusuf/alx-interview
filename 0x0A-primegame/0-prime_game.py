@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-def isWinner(x, nums):
-    """
-    Determine the winner of x rounds of a prime-number-based game.
+"""Determine the winner of x rounds of a prime-number-based game.
 
     Parameters:
     x (int): The number of game rounds.
@@ -11,57 +8,31 @@ def isWinner(x, nums):
 
     Returns:
     str: The name of the player with the most wins ('Maria' or 'Ben').
-         If there is no clear winner, return None.
-    """
-    if x <= 0 or not nums:
+         If there is no clear winner, return None."""
+
+
+def isWinner(x, nums):
+    """Prime game winner."""
+    if x < 1 or not nums:
         return None
 
-    def sieve(n):
-        """
-        Return a list of prime numbers up to n using the
-        Sieve of Eratosthenes.
-        """
-        is_prime = [True] * (n + 1)
-        p = 2
-        while (p * p <= n):
-            if is_prime[p]:
-                for i in range(p * p, n + 1, p):
-                    is_prime[i] = False
-            p += 1
-        primes = []
-        for p in range(2, n + 1):
-            if is_prime[p]:
-                primes.append(p)
-        return primes
+    m_wins = 0
+    b_wins = 0
+    n = max(nums)
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
 
-    def play_game(n):
-        """Simulate the game for a given n and return the winner."""
-        primes = sieve(n)
-        if not primes:
-            return "Ben"  # No primes means Ben wins automatically
-        current_player = "Maria"
-        while primes:
-            p = primes.pop(0)  # Maria picks the smallest prime
-            # Remove multiples of p
-            primes = [x for x in primes if x % p != 0]
-            if not primes:
-                return current_player
-            current_player = "Ben" if current_player == "Maria" else "Maria"
-        return "Ben" if current_player == "Maria" else "Maria"
-
-    maria_wins = 0
-    ben_wins = 0
+    for x in range(2, int(n**0.5) + 1):
+        if primes[x]:
+            for y in range(x**2, n + 1, x):
+                primes[y] = False
 
     for n in nums:
-        winner = play_game(n)
-        if winner == "Maria":
-            maria_wins += 1
-        else:
-            ben_wins += 1
+        count = sum(primes[2:n+1])
+        b_wins += count % 2 == 0
+        m_wins += count % 2 == 1
 
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
+    if m_wins == b_wins:
         return None
+
+    return 'Maria' if m_wins > b_wins else 'Ben'
